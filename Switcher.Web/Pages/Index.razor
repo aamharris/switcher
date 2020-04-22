@@ -1,0 +1,46 @@
+﻿@page "/"
+@using Switcher.Core;
+
+    <div class="container">
+        <i data-fa-symbol="power" class="fas fa-power-off"></i>
+        <div class="light-control-container">
+            <h2 class="text-muted font-weight-light">LED Light</h2>
+            <div class="btn-round" @onclick="ToggleButton">
+                <svg class="power-icon @(@IsOn ? "active" : "")"><use xlink:href="#power"></use></svg>
+            </div>
+            <p class="text-muted">@(@IsOn ? "On" : "Off")</p>
+        </div>
+    </div>
+
+
+
+@code {
+    private bool IsOn { get; set; }
+
+    private MqttClient mqttClient;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (mqttClient == null)
+        {
+            mqttClient = new MqttClient();
+            await mqttClient.ConnectAsync();
+            mqttClient.OnTopicRecieved += MqttClient_OnTopicRecieved;
+            await mqttClient.SubscribeAsync("light/state");
+        }
+    }
+
+    public async void MqttClient_OnTopicRecieved(object sender, string e)
+    {
+        IsOn = (e == "on") ? true : false;
+        await InvokeAsync(() =>
+        {
+            StateHasChanged();
+        });
+    }
+
+    private void ToggleButton(MouseEventArgs e)
+    {
+        IsOn = !IsOn;
+    }
+}

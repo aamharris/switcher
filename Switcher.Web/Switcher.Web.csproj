@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Switcher.Core\Switcher.Core.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
+    <Folder Include="wwwroot\js\" />
+    <Folder Include="wwwroot\js\font-awesome\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\images\switch.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="wwwroot\images\switch.svg" />
+  </ItemGroup>
+</Project>

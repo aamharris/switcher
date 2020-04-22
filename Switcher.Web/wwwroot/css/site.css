@@ -1,0 +1,85 @@
+@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
+
+html, body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+a, .btn-link {
+    color: #0366d6;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.valid.modified:not([type=checkbox]) {
+    outline: 1px solid #26b050;
+}
+
+.invalid {
+    outline: 1px solid red;
+}
+
+.validation-message {
+    color: red;
+}
+
+#blazor-error-ui {
+    background: lightyellow;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+#blazor-error-ui .dismiss {
+    cursor: pointer;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.5rem;
+}
+
+.light-control-container {
+    height: 250px;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.btn-round {
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    background: rgb(206,205,205);
+    background: linear-gradient(0deg, rgba(206,205,205,1) 0%, rgba(246,246,246,1) 100%);
+    -webkit-box-shadow: 0px 0px 3px 3px rgb(165, 165, 165);
+    -moz-box-shadow: 0px 0px 3px 3px rgb(165, 165, 165);
+    box-shadow: 0px 0px 3px 3px rgb(165, 165, 165);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.power-icon {
+    margin-bottom: 2px;
+    height: 75%;
+    color: dimgray;
+
+    transition: color 350ms;
+    -o-transition: color 350ms;
+    -moz-transition: color 350ms;
+    -webkit-transition: color 350ms;
+}
+
+.active {
+    color: #219ffb;
+}
