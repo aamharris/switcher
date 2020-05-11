@@ -1,5 +1,4 @@
-﻿using Foundation;
-using Switcher.Core;
+﻿using Switcher.Core;
 using System;
 using UIKit;
 
@@ -9,7 +8,6 @@ namespace Switcher.ios
     {
         private MqttClient mqttClient;
 
-
         public ViewController(IntPtr handle) : base(handle)
         {
             mqttClient = new MqttClient();
@@ -18,45 +16,28 @@ namespace Switcher.ios
         public override async void ViewDidLoad()
         {
             base.ViewDidLoad();
-            // Perform any additional setup after loading the view, typically from a nib.
-
-            await mqttClient.ConnectAsync();
             mqttClient.OnTopicRecieved += MqttClient_OnTopicRecieved;
+            await mqttClient.ConnectAsync();
             await mqttClient.SubscribeAsync("light/state");
-
-            LightSwitcher.ValueChanged += LightSwitcher_ValueChanged;
-
         }
+
 
         private void MqttClient_OnTopicRecieved(object sender, string e)
         {
-            if (e == "on")
+            LightSwitcher.BeginInvokeOnMainThread(() =>
             {
-                LightSwitcher.BeginInvokeOnMainThread(() =>
-                {
-                    LightSwitcher.SetState(true, true);
-                });
-            }
-            else
-            {
-                LightSwitcher.BeginInvokeOnMainThread(() =>
-                {
-                    LightSwitcher.SetState(false, true);
-                });
-            }
+                LightSwitcher.SetState(e == "on", true);
+            });
         }
 
-        private async void LightSwitcher_ValueChanged(object sender, EventArgs e)
+        async partial void UISwitchController_OnTouch(UIButton sender)
         {
-            bool isOn = LightSwitcher.On;
-            await mqttClient.PublishAsync("light", isOn ? "on" : "off");
-
+            await mqttClient.PublishAsync("light", LightSwitcher.On ? "off" : "on");
         }
 
         public override void DidReceiveMemoryWarning()
         {
             base.DidReceiveMemoryWarning();
-            // Release any cached data, images, etc that aren't in use.
         }
     }
 }

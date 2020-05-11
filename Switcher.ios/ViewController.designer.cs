@@ -18,11 +18,24 @@ namespace Switcher.ios
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UISwitch LightSwitcher { get; set; }
 
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton UISwitchController { get; set; }
+
+        [Action ("UISwitchController_TouchUpInside:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void UISwitchController_OnTouch (UIKit.UIButton sender);
+
         void ReleaseDesignerOutlets ()
         {
             if (LightSwitcher != null) {
                 LightSwitcher.Dispose ();
                 LightSwitcher = null;
+            }
+
+            if (UISwitchController != null) {
+                UISwitchController.Dispose ();
+                UISwitchController = null;
             }
         }
     }

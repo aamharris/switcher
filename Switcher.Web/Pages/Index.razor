@@ -32,15 +32,16 @@
 
     public async void MqttClient_OnTopicRecieved(object sender, string e)
     {
-        IsOn = (e == "on") ? true : false;
+        IsOn = e == "on";
         await InvokeAsync(() =>
         {
             StateHasChanged();
         });
     }
 
-    private void ToggleButton(MouseEventArgs e)
+    private async Task ToggleButton(MouseEventArgs e)
     {
         IsOn = !IsOn;
+        await mqttClient.PublishAsync("light", IsOn ? "on" : "off");
     }
 }

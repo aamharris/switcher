@@ -25,17 +25,30 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="198" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                            <switch contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="198" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES" opaque="NO">
                                 <rect key="frame" x="312" y="115" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </switch>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="404" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                                <rect key="frame" x="314" y="116" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="UISwitchController_TouchUpInside:" destination="BYZ-38-t0r" id="406" eventType="touchUpInside"/>
+                                </connections>
+                                <state key="normal"/>
+                            </button>
                         </subviews>
+                        <connections>
+                            <outletCollection id="400" property="gestureRecognizers" destination="399" appends="YES"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="LightSwitcher" destination="198" id="name-outlet-198"/>
+                        <outlet property="UISwitchController" destination="404" id="name-outlet-404"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="399"/>
             </objects>
             <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
